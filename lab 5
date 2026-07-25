@@ -1,0 +1,88 @@
+#Task 1
+
+n = input("Enter your name: ")
+print(n.upper())
+print(n.lower())
+print(n.title())
+
+
+from numpy.core.defchararray import startswith
+
+#Task 2
+
+email = input("Enter your email: ").strip()
+print("Starts with Letter : ", email.startswith("k"))
+print("Ends with .com : ", email.endswith(".com"))
+
+#Task 3
+
+s = input("Enter a sentence : ")
+print("Count of a : ", s.count("a"))
+print("Count of e : ", s.count("e"))
+
+
+# Task 4
+
+s = input("Enter a Word : ")
+key = input("Enter Character to search : ")
+index = s.find(key)
+if index > -1:
+    print("Word Found")
+    print("Index : ", index)
+else:
+    print("Word Not Found")
+
+
+
+#Task 5
+
+p = input("Enter your password : ")
+print("Only alphabets : ", p.isalpha())
+print("Only digits : ", p.isdigit())
+print("Only alphanumeric : ", p.isalnum())
+
+
+#Task 6
+
+name = input("Enter your name: ")
+center = name.center(20, "*")
+ljustified = name.ljust(20, "-")
+rjustified = name.rjust(20, "-")
+print(center)
+print(ljustified)
+print(rjustified)
+
+
+
+# Task 7
+
+s = input("Enter a sentence : ")
+print(s.upper())
+print(s.lower())
+swapch = ""
+for ch in s:
+    if ch.isupper():
+        swapch += ch.lower()
+    else:
+        swapch += ch.upper()
+
+print(swapch)
+
+
+#Task 8
+
+s = input("Enter a sentence : ")
+print(s.replace("Java", "Python"))
+
+
+#Task 9
+
+roll = input("Enter your roll number: ")
+print(roll.zfill(10))
+
+# Task 10
+
+word = input("Enter your word: ")
+print("Is all Upper : ",word.isupper())
+print("Is all Lower : ",word.islower())
+print("Is Title : ", word.istitle())
