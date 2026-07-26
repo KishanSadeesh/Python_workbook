@@ -1,0 +1,68 @@
+#Task 1
+sub = ('Tamil', 'English', 'Mathematics', 'Science', 'Economics')
+for i in sub:
+    print(i)
+
+
+#Task 2
+
+sub = ('Tamil', 'English', 'Mathematics', 'Science', 'Economics')
+print(len(sub))
+
+#Task 3
+
+n = (1,2,3,1,2,1,1,5,6,9,11)
+k = int(input("Enter number : "))
+
+print("Count of ", k, " : ", n.count(k))
+
+#Task 4
+
+n = (1,2,3,1,2,1,1,5,6,9,11)
+k = int(input("Enter number : "))
+print(n.index(k))
+
+#Task 5
+n = (1,2,4,6,8,22,11)
+l = list(n)
+l.append(17)
+print(l)
+
+#Task 6
+
+n = (1,2,4,6,8,22,11)
+print("Minimum : ", min(n))
+print("Maximum : ", max(n))
+
+# Task 7
+
+n1 = (1,2,3,4)
+n2 = (5,6,7,8)
+n3 = list(n1)
+n3.extend(n2)
+t = tuple(n3)
+print(t)
+
+
+#Task 8
+
+n = (1,2,4,6,8,22,11)
+k = int(input("Enter number : "))
+if k in n:
+    print("Number exists")
+else:
+    print("Number not exists")
+
+#Task 9
+import statistics as s
+l = [100,56,40,59,70]
+t = tuple(l)
+print(s.mean(t))
+
+#Task 10
+import statistics as s
+n = (1,2,4,6,8,22,11,12)
+print("First element : ", n[0])
+print("Last element : ", n[-1])
+m = len(n) // 2
+print("Middle element : ", n[m])
