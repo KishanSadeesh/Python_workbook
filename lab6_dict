@@ -1,0 +1,112 @@
+
+#Task 1
+
+student = {
+    "name" : "Kishan",
+    "age" : 21,
+    "college" : "VIT",
+    "year" : "graduated"
+}
+print(student)
+
+#Task 2
+student = {
+    "name" : "Kishan",
+    "age" : 21,
+    "college" : "VIT",
+    "year" : "graduated"
+}
+student["native"] = "Salem"
+print(student)
+
+# Task 3
+
+student = {
+    "name" : "Kishan",
+    "age" : 21,
+    "college" : "VIT",
+    "year" : "graduated"
+}
+student["name"] = "Yaswant"
+
+
+print(student)
+
+
+#Task 4
+
+student = {
+    "name" : "Kishan",
+    "age" : 21,
+    "college" : "VIT",
+    "year" : "graduated"
+}
+student.pop("year")
+print(student)
+
+
+#Task 5
+
+student = {
+    "name" : "Kishan",
+    "age" : 21,
+    "college" : "VIT",
+    "year" : "graduated"
+}
+
+print(student.keys())
+
+
+#Task 6
+
+student = {
+    "name" : "Kishan",
+    "age" : 21,
+    "college" : "VIT",
+    "year" : "graduated"
+}
+
+print(student.values())
+
+#Task 7
+
+student = {
+    "name" : "Kishan",
+    "age" : 21,
+    "college" : "VIT",
+    "year" : "graduated"
+}
+k = input("Enter key to search : ")
+if k in student:
+    print("Key exists")
+else:
+    print("Key doesn't exists")
+
+#Task 8
+
+s = input("Enter a string : ")
+d = {}
+for ch in s:
+    if ch in d:
+        d[ch] += 1
+    else:
+        d[ch] = 1
+print(d)
+
+#Task 9
+student = {
+    "Kishan" :90,
+    "Bob" : 70,
+    "Fin" : 80,
+    "Tin" : 76,
+    "Ram" : 60
+}
+max_student = max(student, key=student.get)
+print("Max marks obtained by ", max_student)
+
+
+#Task 10
+d1 = {"name" : "Kishan", "age" : 21}
+d2 = {"education" : "computer science"}
+d1.update(d2)
+print(d1)
