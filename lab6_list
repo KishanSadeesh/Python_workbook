@@ -1,0 +1,95 @@
+#Task 1
+
+n = [1,2,3,4,5,6,7,8,98,12]
+
+for i in n:
+    if i % 2 == 0:
+        print(i)
+
+#Task 2
+
+n = [1,2,3,4,5,6,7,8,98,12]
+print("Minimum : ", min(n))
+print("Maximum : ",max(n))
+
+
+#Task 3
+
+n = [3,4,5,6,7,8,98,12,11,99, 104]
+
+sum = 0
+for i in n:
+    sum += i
+avg = sum / len(n)
+print("Sum : ", sum)
+print("Average : ",avg)
+
+
+
+#Task 4
+
+n = [1,2,3,4,4,5,12,3,11,99,101,99,98,11]
+uni = list(dict.fromkeys(n))
+print("Unique : ",uni)
+
+
+#Task 5
+
+n = [1,2,3,4,5,34,11,44,12,10,99,101,98,98,99,101]
+rd = list(set(n))
+rd.sort(reverse=True)
+print("Second largest number in a list : ",rd[1])
+
+
+#Task 6
+
+n = [1,2,3,4,5,6,7,8,98,12]
+k = []
+for i in range(len(n)-1,-1,-1):
+    k.append(n[i])
+print(k)
+
+#Task 7
+
+n1 = [1,2,3,4,5,6,7,8,98,12]
+n2 = [2,4,1,44,11,10,1]
+mer = list(set(n1 + n2))
+mer_sort = sorted(n1)
+print(mer_sort)
+
+
+#Task 8
+
+n = [1,2,3,4,4,5,12,3,11,99,101,99,98,11]
+num = int(input("Enter the number : "))
+
+count = 0
+for i in n:
+    if i == num:
+        count += 1
+print("Count number : ", count)
+
+#Task 9
+
+a = [1,2,3,4,5,6,7,8,98,12]
+
+even = []
+odd = []
+for i in a:
+    if i % 2 == 0:
+        even.append(i)
+    else:
+        odd.append(i)
+print(even)
+print(odd)
+
+#Task 10
+
+names = ['Kishan', 'Iniyan', 'elan', 'vikas', 'ram']
+
+name = input("Enter your name: ")
+
+if name in names:
+    print("Name Found")
+else:
+    print("Name not found")
