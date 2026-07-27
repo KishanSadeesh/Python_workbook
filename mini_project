@@ -1,0 +1,134 @@
+import time as t
+
+#Expense Tracker System
+expenses = []
+def add_exp():
+    n = int(input("Enter Number of expenses : "))
+    for i in range(0, n):
+        print("Expense ", i + 1, " : ")
+        name = input("Name :")
+        category = input("Category : ")
+        amount = int(input("Amount : "))
+
+        expense = {
+            "Name": name,
+            "Category": category,
+            "Amount spent": amount
+        }
+        expenses.append(expense)
+    print(expenses)
+
+def view_exp():
+    if expenses == []:
+        return
+    else:
+        print("Expense Tracker".center(50,'*'))
+        print()
+        print('--' * 20)
+        print("Name\t\tCategory\t\tAmount Spent")
+        print('--'*20)
+        for e in expenses:
+            print(e["Name"],"\t\t",e["Category"],"\t\t",e["Amount spent"])
+            print()
+        print('--' * 20)
+
+
+def search_exp():
+    print("1. Search by Category")
+    print("2. Search By Name")
+    choice = int(input("Select your choice : "))
+    if choice == 1:
+        print("Displaying present categories : ")
+        for e in expenses:
+            print("* ", e.get("Category"))
+        category_search = input("Type the category you want to Search : ")
+        print('--' * 20)
+        print("Name\t\tCategory\t\tAmount Spent")
+        print('--' * 20)
+        for e in expenses:
+            if e["Category"] == category_search:
+                print(e["Name"], "\t\t", e["Category"], "\t\t", e["Amount spent"])
+        print('--' * 20)
+    elif choice == 2:
+        print("Displaying present Names : ")
+        for e in expenses:
+            print("* ",e.get("Name"))
+        name_search = input("Type the Name you want to Search : ")
+        print('--' * 20)
+        print("Name\t\tCategory\t\tAmount Spent")
+        print('--' * 20)
+        for e in expenses:
+            if e["Name"] == name_search:
+                print(e["Name"], "\t\t", e["Category"], "\t\t", e["Amount spent"])
+        print('--' * 20)
+    else:
+        print("Invalid Choice :(")
+
+
+def delete_exp():
+    print("1. Delete BY Name ")
+    print("2. Delete By Category ")
+    choice = int(input("Enter your choice of deletion : "))
+    if choice == 1:
+        print("Displaying all names to select one : ")
+        for e in expenses:
+            print("* ",e["Name"])
+        name = input("Type Name what you want to delete: ")
+        for e in expenses:
+            if e["Name"] == name:
+                expenses.remove(e)
+        print("Deleted entire expense Data..")
+
+    elif choice == 2:
+        print("Displaying present categories : ")
+        for e in expenses:
+            print("* ", e.get("Category"))
+        category_search = input("Type the category you want to Search : ")
+        for e in expenses:
+            if e["Category"] == category_search:
+                expenses.remove(e)
+        print("Deleted entire expense Data..")
+
+def total_spend():
+    sum = 0
+    for e in expenses:
+        sum += e["Amount spent"]
+    print("Total Amount Spent : ", sum)
+
+def main():
+    while True:
+        print("Type option what you want : ")
+        print("Add Expense --> 1")
+        print("View Expense --> 2")
+        print("Search Expense --> 3")
+        print("Delete Expense --> 4")
+        print("Total Spending --> 5")
+        print("Exit --> 0")
+        user = int(input("Enter your choice : "))
+        if user == 0:
+            break
+        elif user == 1:
+            print()
+            add_exp()
+            t.sleep(2)
+        elif user == 2:
+            print()
+            view_exp()
+            t.sleep(2)
+        elif user == 3:
+            print()
+            search_exp()
+            t.sleep(2)
+        elif user == 4:
+            print()
+            delete_exp()
+            t.sleep(2)
+        elif user == 5:
+            print()
+            total_spend()
+            t.sleep(2)
+        else:
+            print("Please enter valid choice...(> _ <)")
+# 2. Call the main function using the special condition
+if __name__ == "__main__":
+    main()
