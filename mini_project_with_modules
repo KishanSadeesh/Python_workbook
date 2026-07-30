@@ -1,0 +1,173 @@
+# Smart Hospital Appointment System
+
+
+import random
+import datetime as dtime
+import time as t
+import math
+import webbrowser
+import winsound
+import pyttsx3
+import qrcode
+from plyer import notification
+
+appointments = []
+doctors = {
+    1: ("Dr. Bharath Eeswara", "Orthopodic", 1200),
+    2: ("Dr. Suresh Kumar", "Cardiologist", 700),
+    3: ("Dr. Meena Nair", "Pediatrician", 600),
+    4: ("Dr. Kumar Kushagra", "Dermatologist", 1000),
+    5: ("Dr. Indrajith", "General Physician", 500),
+    6: ("Dr. Vijay Kumar", "Neurologist", 1500)
+}
+
+
+def book_appointment():
+    name = input("Enter Patient Name : ")
+    age = int(input("Enter Patient age : "))
+    gender = input("Enter Gender (Male/Female): ").upper()
+
+    print("\nAvailable Doctors : ")
+    print(f"S.no\t\tDoctor Name\t\t\t\tSpecialized area\t\t\tFee")
+    for d in doctors:
+        print(f"{d}\t\t{doctors[d][0].center(20,' ')}\t\t{doctors[d][1].center(20,' ')}\t\t{doctors[d][2]}")
+
+    choice = int(input("Choose Doctor Number : "))
+    doc_name = doctors[choice][0]
+    doc_fee = doctors[choice][2]
+
+    gst = doc_fee * 0.18
+    total = math.ceil(doc_fee + gst)
+
+    appointment_id = "APOLO00" + str(random.randint(1000,9999))
+    print("Total Cost Including GST(18%) : ",total)
+    print("Appointment Id : ", appointment_id)
+    dayss = int(input("Appointment after how many days? : "))
+    app_date = dtime.datetime.now() + dtime.timedelta(days=dayss)
+    print()
+
+    appointment = {
+        "ID" : appointment_id,
+        "Name" : name,
+        "Age" : age,
+        "Gender" : gender,
+        "Doctor Name" : doc_name,
+        "Date" : app_date.strftime("%d-%m-%Y"),
+        "Fee" : total
+    }
+    appointments.append(appointment)
+
+    qrdata = f"""
+    ID : {appointment_id}
+    Name : {name}
+    Age : {age}
+    Gender : {gender}
+    Doctor Name : {doc_name}
+    Date : {app_date.strftime("%d-%m-%Y")}
+    Fees : Rs.{total}
+    """
+    img = qrcode.make(qrdata)
+    img.save(name+".png")
+    img.show()
+    print("QR Code Generated Successfully")
+    engine = pyttsx3.init()
+    engine.say("Appointment Slot Alloted Successfully Thank You")
+    engine.runAndWait()
+
+    notification.notify(
+        title="Appointment Slot Booked",
+        message=f"Successfully Created Appointment slot for {name}",
+        timeout=5
+    )
+    winsound.Beep(1000, 700)
+    print("Opening Hospital Website....")
+
+    webbrowser.open("https://www.apollohospitals.com/")
+
+
+
+def view_appointments():
+    if appointments == []:
+        print("No appointments Found...")
+        return
+    else:
+        print("List of Appointments".center(40,'*'))
+        print('--' * 20)
+        print("ID\t\t\tName\t\t\tDoctor\t\tDate\t\tFee")
+        print('--' * 20)
+        for ap in appointments:
+            print(ap["ID"], "\t", ap["Name"], "\t", ap["Doctor Name"], "\t", ap["Date"], "\t", ap["Fee"])
+        print('--' * 20)
+
+def search_appointment():
+    inp_name = input("Enter Patient name to search :")
+    flag = False
+    print('--' * 20)
+    print("ID\t\t\tName\t\t\tDoctor\t\tDate\t\tFee")
+    print('--' * 20)
+
+    for ap in appointments:
+        if ap["Name"] == inp_name:
+            print(ap["ID"], "\t", ap["Name"], "\t", ap["Doctor Name"], "\t", ap["Date"], "\t", ap["Fee"])
+            flag = True
+    if not flag:
+        winsound.Beep(1000, 700)
+        print("No Appointment found for ",inp_name)
+    print('--' * 20)
+
+def cancel_appointment():
+    inp_name = input("Enter Patient name to Cancel Appointment :")
+    flag = False
+    for ap in appointments:
+        if ap["Name"] == inp_name:
+            appointments.remove(ap)
+
+            engine = pyttsx3.init()
+            engine.say("Appointment Slot has been cancelled Successfully")
+            engine.runAndWait()
+            notification.notify(
+                title="Appointment Cancellation",
+                message=f"Successfully Cancelled Appointment for {inp_name}",
+                timeout=3
+            )
+            print("Appointment Cancelled For ", inp_name)
+
+            flag = True
+    if not flag:
+        winsound.Beep(1000, 700)
+        print("No Appointment found for ",inp_name)
+
+def main():
+    print("-" * 40)
+    print("Smart Hospital Appointment System".center(40, ' '))
+    print("-" * 40)
+    print()
+    while True:
+        print("\nType option what you want : ")
+        print("Book Appointment --> 1")
+        print("View Appointments --> 2")
+        print("Search Appointment --> 3")
+        print("Cancel Appointment --> 4")
+        print("Exit --> 0")
+
+        user = int(input("Enter your choice : "))
+        if user == 0:
+            break
+        elif user == 1:
+            book_appointment()
+            t.sleep(1)
+        elif user == 2:
+            view_appointments()
+            t.sleep(1)
+        elif user == 3:
+            search_appointment()
+            t.sleep(1)
+        elif user == 4:
+            cancel_appointment()
+            t.sleep(1)
+        else:
+            print("Please enter valid choice...(> _ <)")
+
+
+if __name__ == "__main__":
+    main()
